@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dan's Plumbing | Reliable Local Plumber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --blue-dark: #0b3c78;
+      --blue: #1d65f2;
+      --blue-light: #e4edff;
+      --accent: #18b6ff;
+      --bg: #f5f7fc;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 16px 40px rgba(15, 23, 42, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      color: white;
+      padding-bottom: 2.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .logo span {
+      /* If you have a real logo, replace this span with an <img> */
+      letter-spacing: 0.08em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      font-size: 0.78rem;
+      opacity: 0.85;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      opacity: 0.85;
+    }
+
+    nav a:hover,
+    nav a.active {
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--blue-dark);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.35);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.8rem 1.5rem 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(191, 219, 254, 0.9);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      background: rgba(15, 23, 42, 0.35);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(22, 197, 103, 0.38);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 2.8vw + 1rem, 3rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      color: #e0f2fe;
+    }
+
+    .hero-tagline {
+      font-size: 0.98rem;
+      max-width: 500px;
+      opacity: 0.95;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-bullets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem 1.4rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-bullets span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-bullets span::before {
+      content: "✓";
+      color: #bbf7d0;
+      font-size: 0.9rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--blue-dark);
+      font-weight: 600;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+      font-size: 0.95rem;
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      padding: 0.78rem 1.3rem;
+      font-size: 0.88rem;
+      background: rgba(15, 23, 42, 0.2);
+      color: #e5edff;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .hero-right {
+      background: rgba(15, 23, 42, 0.45);
+      border-radius: 24px;
+      padding: 1.1rem 1.2rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1rem 1rem 1.2rem;
+      color: var(--text);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero-chip {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      border: 1px solid rgba(191, 219, 254, 0.9);
+    }
+
+    .hero-image-placeholder {
+      border-radius: 14px;
+      border: 1px dashed var(--border-soft);
+      background: #e0ecff;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--blue-dark);
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 0.7rem;
+    }
+
+    /* Replace .hero-image-placeholder with a real hero image later
+       e.g. <img src="images/plumber-hero.jpg" alt="Plumber working under sink"> */
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-card-footer strong {
+      font-size: 1rem;
+      color: var(--blue-dark);
+    }
+
+    .trust-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      font-size: 0.76rem;
+      color: #e5edff;
+      opacity: 0.9;
+    }
+
+    .trust-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .trust-row span::before {
+      content: "★";
+      color: #facc15;
+      font-size: 0.78rem;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.4rem 1.5rem 3.2rem;
+    }
+
+    .section {
+      margin-bottom: 2.6rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.3rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.2rem 1.4rem;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 14px 26px rgba(15, 23, 42, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .card ul {
+      list-style: none;
+      margin-top: 0.5rem;
+      font-size: 0.86rem;
+    }
+
+    .card ul li {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .card ul li::before {
+      content: "•";
+      color: var(--blue);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.6rem;
+      align-items: flex-start;
+    }
+
+    .about-image-placeholder {
+      background: #e0f2ff;
+      border-radius: var(--radius-md);
+      border: 1px dashed #93c5fd;
+      padding: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--blue-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .about-image-box {
+      height: 140px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue-dark), var(--accent));
+      opacity: 0.85;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.3rem;
+    }
+
+    .step {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1.3rem;
+      font-size: 0.88rem;
+    }
+
+    .step-number {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-bottom: 0.6rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1.6rem 1.5rem 2rem;
+      font-size: 0.8rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--blue-dark);
+      font-weight: 500;
+    }
+
+    @media (max-width: 880px) {
+      .hero,
+      .grid-3,
+      .about-layout,
+      .process {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+        margin-bottom: 1.4rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">
+      <div class="logo">
+        <!-- Replace this span with your actual logo image if you have one -->
+        <span>DP</span>
+      </div>
+      <div class="brand-text">
+        <strong>Dan's Plumbing</strong>
+        <span>Quality work. Honest service.</span>
+      </div>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">About &amp; Contact</a></li>
+        <li><a class="nav-cta" href="tel:+15551234567">Call Now</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        24/7 Emergency Plumbing · Fast, Friendly Service
+      </div>
+      <h1>
+        Reliable Plumbing. <span>Every Time.</span>
+      </h1>
+      <p class="hero-tagline">
+        Dan's Plumbing is your local, dependable plumber for leaks, clogs,
+        water heaters, and emergency repairs&mdash;done right the first time.
+      </p>
+
+      <div class="hero-bullets">
+        <span>Licensed &amp; insured professionals</span>
+        <span>Upfront, honest pricing</span>
+        <span>Clean, respectful technicians</span>
+        <span>Serving homes &amp; small businesses</span>
+      </div>
+
+      <div class="hero-actions">
+        <!-- Replace phone number with Dan's real number -->
+        <a class="btn-primary" href="tel:+15551234567">
+          📞 Call Now for Service
+        </a>
+        <a class="btn-secondary" href="services.html">
+          View All Plumbing Services
+        </a>
+      </div>
+
+      <p class="hero-note">
+        Emergency calls welcome · Same-day appointments when available.
+      </p>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span>Featured image</span>
+          <span class="hero-chip">Demo placeholder</span>
+        </div>
+        <div class="hero-image-placeholder">
+          Add a wide photo here of a plumber working in a kitchen or bathroom.
+          This will be the main hero image for Dan's Plumbing.
+        </div>
+        <div class="hero-card-footer">
+          <div>
+            <strong>(555) 123-4567</strong><br />
+            Call or text for fast plumbing service.
+          </div>
+          <div>
+            <div>Serving your local area</div>
+            <div>Residential &amp; light commercial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-row">
+        <span>Family-owned local plumbing company</span>
+        <span>Focused on quality work &amp; honest service</span>
+      </div>
+    </div>
+  </section>
+</header>
+
+<main>
+  <!-- WHY CHOOSE SECTION -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Why choose Dan's Plumbing?</h2>
+      <p class="section-sub">
+        We treat every home like our own. From leaky faucets to burst pipes,
+        we fix the problem, clean up after ourselves, and make sure you know
+        exactly what was done.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card">
+        <h3>Quality work</h3>
+        <p>
+          Every job is done to professional standards, using quality parts
+          and proven methods.
+        </p>
+        <ul>
+          <li>Repairs done right the first time</li>
+          <li>Attention to details that prevent future issues</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Honest pricing</h3>
+        <p>
+          We explain your options up front so there are no surprises when the
+          job is finished.
+        </p>
+        <ul>
+          <li>Clear estimates before work begins</li>
+          <li>No pushy sales tactics</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Respect for your home</h3>
+        <p>
+          We show up on time, communicate clearly, and leave your space as clean
+          as we found it.
+        </p>
+        <ul>
+          <li>Shoes covered / drop cloths used</li>
+          <li>Friendly, professional technicians</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT / MISSION -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">About Dan's Plumbing</h2>
+      <p class="section-sub">
+        Our mission is simple: keep your water flowing, your drains clear,
+        and your home protected from plumbing problems&mdash;with service you
+        feel good recommending to neighbors.
+      </p>
+    </div>
+
+    <div class="about-layout">
+      <article class="card">
+        <h3>Our mission &amp; values</h3>
+        <p>
+          Dan's Plumbing was built on sharp craftsmanship, honest advice, and
+          a commitment to doing what’s best for the customer, not what’s most
+          expensive.
+        </p>
+        <ul class="mission-list">
+          <li>Give clear recommendations that you can actually understand.</li>
+          <li>Fix the root cause, not just the symptom.</li>
+          <li>Show up when we say we will.</li>
+          <li>Stand behind the work we do.</li>
+        </ul>
+      </article>
+
+      <aside class="about-image-placeholder">
+        <div class="about-image-box"></div>
+        <!-- Replace placeholder above with a real photo:
+             <img src="images/dans-team.jpg" alt="Dan's Plumbing technicians"> -->
+        Add a team or work-van photo here to show the real people behind
+        Dan's Plumbing.
+      </aside>
+    </div>
+  </section>
+
+  <!-- SIMPLE PROCESS -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-sub">
+        A straightforward process that gets your plumbing issue handled quickly,
+        without the hassle.
+      </p>
+    </div>
+
+    <div class="process">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Call or text</h3>
+        <p>
+          Tell us what’s going on and share any photos if helpful. We’ll
+          give you a clear next step and schedule a visit.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>We arrive &amp; diagnose</h3>
+        <p>
+          A licensed plumber inspects the issue, explains your options, and
+          provides upfront pricing.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Fix &amp; follow-up</h3>
+        <p>
+          We complete the repair, clean up the workspace, and make sure
+          everything is working the way it should.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; <span id="year"></span> Dan's Plumbing. All rights reserved.
+  &nbsp;&middot;&nbsp;
+  <a href="tel:+15551234567">Call (555) 123-4567 for service.</a>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
